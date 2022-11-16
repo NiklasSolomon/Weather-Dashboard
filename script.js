@@ -154,6 +154,21 @@ function renderCurrentWeather(city, weather, timezone) {
     todayEl.append(card);
 }
 
+function renderForecast(dailyForecast, timezone) {
+    var startDate = dayjs().tz(timezone).add(1, 'day').startOf('day').unix();
+    var endDate = dayjs().tz(timezone).add(6, 'day').startOf('day').unix();
+
+    var headerCol = document.createElement('div');
+    var header = document.createElement('h4');
+
+    headerCol.setAttribute('class', 'col-12');
+    header.textContent = 'Weekly Forecast:';
+    headerCol.append(header);
+
+    forecastEl.innerHTML = '';
+    forecastEl.append(headerCol);
+}
+
 // Pass cityName to Geolocation on submit
 function handleSearch(error) {
     if (!inputEl.value) {
