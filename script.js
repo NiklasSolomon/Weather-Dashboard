@@ -119,6 +119,13 @@ function renderCurrentWeather(city, weather, timezone) {
     card.setAttribute('class', 'h3 card-title');
     cardBody.setAttribute('class', 'card-text');
     card.append(cardBody);
+
+    header.setAttribute('class', 'h3 card-title');
+    tempEl.setAttribute('class', 'card-text');
+    windEl.setAttribute('class', 'card-text');
+    humidityEl.setAttribute('class', 'card-text');
+
+    
 }
 
 // Pass cityName to Geolocation on submit
