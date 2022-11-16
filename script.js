@@ -115,6 +115,10 @@ function renderCurrentWeather(city, weather, timezone) {
     var humidityEl = document.createElement('p');
     var uvEl = document.createElement('p');
     var uvBadge = document.createElement('button');
+
+    card.setAttribute('class', 'h3 card-title');
+    cardBody.setAttribute('class', 'card-text');
+    card.append(cardBody);
 }
 
 // Pass cityName to Geolocation on submit
