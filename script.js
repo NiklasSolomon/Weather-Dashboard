@@ -154,6 +154,15 @@ function renderCurrentWeather(city, weather, timezone) {
     todayEl.append(card);
 }
 
+function renderForecastEl(forecast, timezone) {
+    var unixTs = forecast.dt;
+    var iconUrl = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
+    var iconDescription = forecast.weather[0].description;
+    var temp = forecast.temp.day;
+    var { humidity } = forecast;
+    var wind = forecast.wind_speed;
+}
+
 function renderForecast(dailyForecast, timezone) {
     var startDate = dayjs().tz(timezone).add(1, 'day').startOf('day').unix();
     var endDate = dayjs().tz(timezone).add(6, 'day').startOf('day').unix();
