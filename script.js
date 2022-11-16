@@ -102,7 +102,7 @@ function renderCurrentWeather(city, weather, timezone) {
     var temp = weather.temp;
     var wind = weather.wind_speed;
     var humidity = weather.humidity;
-    var uvIndex = weather.uvi;
+    var uvi = weather.uvi;
     var iconUrl = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
     var iconDescription = weather.weather[0].description || weather[0].main;
 
@@ -134,6 +134,24 @@ function renderCurrentWeather(city, weather, timezone) {
     windEl.textContent = `Wind: ${wind} MPH`;
     humidityEl.textContent = `Humidity: ${humidity} %`;
     cardBody.append(header, tempEl, windEl, humidityEl);
+
+    uvEl.textContent = 'UV Index: ';
+    uvBadge.classList.add('btn', 'btn-sm');
+
+    if (uvi < 3) {
+        uvBadge.classList.add('btn-success');
+    } else if (uvi < 7) {
+        uvBadge.classList.add('btn-warning');
+    } else {
+        uvBadge.classList.add('btn-danger');
+    }
+
+    uvBadge.textContent = uvi;
+    uvEl.append(uvBadge);
+    card.Body.append(uvEl);
+
+    todayEl.innerHTML = '';
+    todayEl.append(card);
 }
 
 // Pass cityName to Geolocation on submit
