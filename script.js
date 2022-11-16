@@ -96,9 +96,26 @@ function fetchOneCall(location) {
 // }
 
 // Display the fetched objects
-// function displayObjects(city, data) {
+// function displayObjects(city, data)
+function renderCurrentWeather(city, weather, timezone) {
+    var date = dayjs().tz(timezone).format('MM/DD/YYYY');
+    var temp = weather.temp;
+    var wind = weather.wind_speed;
+    var humidity = weather.humidity;
+    var uvIndex = weather.uvi;
+    var iconUrl = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
+    var iconDescription = weather.weather[0].description || weather[0].main;
 
-// }
+    var card = document.createElement('div');
+    var cardBody = document.createElement('div');
+    var header = document.createElement('h2');
+    var weatherIcon = document.createElement('img');
+    var tempEl = document.createElement('p');
+    var windEl = document.createElement('p');
+    var humidityEl = document.createElement('p');
+    var uvEl = document.createElement('p');
+    var uvBadge = document.createElement('button');
+}
 
 // Pass cityName to Geolocation on submit
 function handleSearch(error) {
@@ -123,4 +140,5 @@ function handleClick(e) {
 
 // fetchOneCall();
 initSearchHistory();
-searchForm.addEventListener('submit',)
+searchForm.addEventListener('submit', handleSearch);
+searchHistoryEl.addEventListener('click', handleClick);
