@@ -12,27 +12,29 @@
     <header class="container-fluid text-center">
         <h1>Weather Dashboard</h1>
     </header>
-    <main>
-        <!-- Sidebar containers -->
-        <div class="container-fluid">
-            <div class="row justify-content-center p-4 p-xl-0">
-                <aside class="card col-xl-3 p-0 m-3">
+    <main class="container-fluid">
+        <div class="row">
+            <div class="row justify-content-center m-1">
+                <!-- Sidebar containers -->
+                <aside class="card col m-3">
                     <!-- Search box -->
                     <form class="form row p-2" id="search">
                         <input id="input" type="text" name="Search Box" class="form-control" placeholder="Enter City Name"/>
-                        <button type="submit" class="btn search-button">Search</button>
+                        <button type="submit" class="button m-1">Search</button>
                     </form>
-                    
                     <!-- Search history -->
-                    <div id="history" class="row row-cols-12 row-cols-sm-3 row-cols-md-5 row-cols-xl-1 px-5 py-2 justify-content-center gap-2"></div>
+                    <div id="history" class="list-group"></div>
                 </aside>
-
+            </div>
+            <div class="col-lg-9 pb-3">
+                <!-- Weather today -->
+                <div id="today" class="card col-xl-8 p-0 m-3"></div>
+                <!-- Weather forecast -->
+                <section class="row mt-3">
+                    <div id="forecast" class="row"></div>
+                </section>
             </div>
         </div>
-            <!-- Weather today -->
-        <div id="today" class="card col-xl-8 p-0 m-3"></div>
-        <!-- Weather forecast -->
-        <div id="forecast" class="card p-0 col-11"></div>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
