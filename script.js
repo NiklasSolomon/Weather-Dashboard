@@ -125,7 +125,15 @@ function renderCurrentWeather(city, weather, timezone) {
     windEl.setAttribute('class', 'card-text');
     humidityEl.setAttribute('class', 'card-text');
 
-    
+    header.textContent = `${city} (${date})`;
+    weatherIcon.setAttribute('src', iconUrl);
+    weatherIcon.setAttribute('alt', iconDescription);
+    weatherIcon.setAttribute('class', 'weather-img');
+    header.append(weatherIcon);
+    tempEl.textContent = `Temperature: ${temp}°F`;
+    windEl.textContent = `Wind: ${wind} MPH`;
+    humidityEl.textContent = `Humidity: ${humidity} %`;
+    cardBody.append(header, tempEl, windEl, humidityEl);
 }
 
 // Pass cityName to Geolocation on submit
