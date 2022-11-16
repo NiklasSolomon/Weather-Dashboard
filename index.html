@@ -12,31 +12,32 @@
     <header class="container-fluid text-center">
         <h1>Weather Dashboard</h1>
     </header>
-    <!-- Sidebar containers -->
-    <div class="container-fluid">
-        <div class="row justify-content-center p-4 p-xl-0">
-            <aside class="card col-xl-3 p-0 m-3">
-                <!-- Search box -->
-                <form class="form row p-2" id="search">
-                    <input id="input" type="text" name="Search Box" class="form-control" placeholder="Enter City Name"/>
-                    <button type="submit" class="btn search-button">Search</button>
-                </form>
-                
-                <!-- Search history -->
-                <div id="history" class="row row-cols-12 row-cols-sm-3 row-cols-md-5 row-cols-xl-1 px-5 py-2 justify-content-center gap-2"></div>
-            </aside>
-
-        </div>
-    </div>
-
-    <!-- Weather info containers -->
     <main>
-        <!-- Weather today -->
+        <!-- Sidebar containers -->
+        <div class="container-fluid">
+            <div class="row justify-content-center p-4 p-xl-0">
+                <aside class="card col-xl-3 p-0 m-3">
+                    <!-- Search box -->
+                    <form class="form row p-2" id="search">
+                        <input id="input" type="text" name="Search Box" class="form-control" placeholder="Enter City Name"/>
+                        <button type="submit" class="btn search-button">Search</button>
+                    </form>
+                    
+                    <!-- Search history -->
+                    <div id="history" class="row row-cols-12 row-cols-sm-3 row-cols-md-5 row-cols-xl-1 px-5 py-2 justify-content-center gap-2"></div>
+                </aside>
+
+            </div>
+        </div>
+            <!-- Weather today -->
         <div id="today" class="card col-xl-8 p-0 m-3"></div>
         <!-- Weather forecast -->
         <div id="forecast" class="card p-0 col-11"></div>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/utc.min.js" integrity="sha512-m00bfmYnAl3plEBlQfeQUhw/U2uvmw29V2+jxSWpAjankMWS+zAsjezbKWDEJNXqWq9o9qQZSOiA2RKDpa4D5w==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/timezone.min.js" integrity="sha512-pslqxxHAYPCxaSeFSmXXxDkLejD5dbFVC66aiVq0z4v7VTJBU+wqcG1OpNh4p3MjS2D6NCwz/H2QmSc7dXxryg==" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/2.4.0/luxon.min.js" integrity="sha512-v1zUTZ9zv9Wb2scL/ANxXM6m7yegm/W5SN8SRHNFADdZIuSFFkrEBjNxO803DdFkjoCcJ88g1WHRVlLN6K/O1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

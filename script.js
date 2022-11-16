@@ -1,5 +1,6 @@
 // Declare global variables
-var apiKey = "cad0812010082bedc3a2cdcb7db795c2";
+var apiKey = "6558d66d693a24a41f1327a05150d2a1";
+var rootUrl = 'https://api.openweathermap.org'
 
 // Declare DOM elements
 var searchHistory = [];
@@ -28,7 +29,7 @@ function renderSearchHistory() {
     }
 };    
     // Fetch the city name from the text <input>
-function appendToHistory(search) {
+function saveSearch(search) {
     if (searchHistory.indexOf(search) !== -1) {
         return;
     }
@@ -48,55 +49,6 @@ function initSearchHistory() {
 };
     // Get the city name from the clicked button's (event.target) data-city attribute
     // Call the 'fetchGeolocation' and pass the city name
-
-// FETCH geolocation data (Geocoding API)
-function fetchGeolocation(cityName) {
-    var requestUrl = `http://api.openweathermap.org/geo/2.5/direct?q=${cityName}&appid=cad0812010082bedc3a2cdcb7db795c2`;
-
-    fetch(requestUrl)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            console.log(data);
-            // Access lat and lon from data
-            if (!data[0]) {
-                alert('Input not recognized');
-            } else {
-                saveSearch(cityName);
-                // Call fetchOneCall and pass through the lat and lon
-                fetchOneCall(data[0]);
-            }
-        })
-        
-        .catch(function (err) {
-            console.error(err);
-        });
-}
-// FETCH weather data (Onecall API)
-function fetchOneCall(location) {
-    var { lat } = location;
-    var { lon } = location;
-    var city = location.name;
-    var requestUrl = `https://api.openweathermap.org/data/2.5/onecall?appid=cad0812010082bedc3a2cdcb7db795c2&lat=${lat}&lon=${lon}&exclude=minutely,hourly&units=imperial`;
-
-    fetch(requestUrl)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            console.log(data);
-            displayObjects(city, data);
-        });
-}
-
-// Save the search history in local storage and render on page
-// function saveSearch(cityName) {
-    
-// }
-
-// Display the fetched objects
-// function displayObjects(city, data)
 function renderCurrentWeather(city, weather, timezone) {
     var date = dayjs().tz(timezone).format('MM/DD/YYYY');
     var temp = weather.temp;
@@ -148,8 +100,8 @@ function renderCurrentWeather(city, weather, timezone) {
 
     uvBadge.textContent = uvi;
     uvEl.append(uvBadge);
-    card.Body.append(uvEl);
-
+    cardBody.append(uvEl);
+    
     todayEl.innerHTML = '';
     todayEl.append(card);
 }
@@ -215,20 +167,70 @@ function renderForecast(dailyForecast, timezone) {
     }
 }
 
-function renderItems(city, data) {
+function displayObjects(city, data) {
     renderCurrentWeather(city, data.current, data.timezone);
     renderForecast(data.daily, data.timezone);
 }
 
-// Pass cityName to Geolocation on submit
-function handleSearch(error) {
+// FETCH geolocation data (Geocoding API)
+function fetchGeolocation(location) {
+    var requestUrl = `${rootUrl}/geo/1.0/direct?q=${location}&limit=5&appid=${apiKey}`;
+
+    fetch(requestUrl)
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function(data) {
+            console.log(data);
+            // Access lat and lon from data
+            if (!data[0]) {
+                alert('Input not recognized');
+            } else {
+                saveSearch(location);
+                // Call fetchOneCall and pass through the lat and lon
+                fetchOneCall(data[0]);
+            }
+        })
+        
+        .catch(function (err) {
+            console.error(err);
+        });
+}
+// FETCH weather data (Onecall API)
+function fetchOneCall(location) {
+    var { lat } = location;
+    var { lon } = location;
+    var city = location.name;
+    var requestUrl = `${rootUrl}/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${apiKey}`;
+
+    fetch(requestUrl)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+            displayObjects(city, data);
+        });
+}
+
+// Save the search history in local storage and render on page
+// function saveSearch(location) {
+    
+// }
+
+// Display the fetched objects
+// function displayObjects(city, data)
+
+
+// Pass location to Geolocation on submit
+function handleSearch(e) {
     if (!inputEl.value) {
         return;
     }
 
-    error.preventDefault();
-    var cityName = inputEl.value.trim();
-    fetchGeolocation(cityName);
+    e.preventDefault();
+    var location = inputEl.value.trim();
+    fetchGeolocation(location);
     inputEl.value = '';
 }
 
@@ -243,5 +245,5 @@ function handleClick(e) {
 
 // fetchOneCall();
 initSearchHistory();
-searchForm.addEventListener('submit', handleSearch);
+searchEl.addEventListener('submit', handleSearch);
 searchHistoryEl.addEventListener('click', handleClick);
