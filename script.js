@@ -159,8 +159,8 @@ function renderForecastEl(forecast, timezone) {
     var iconUrl = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
     var iconDescription = forecast.weather[0].description;
     var temp = forecast.temp.day;
-    var { humidity } = forecast;
     var wind = forecast.wind_speed;
+    var { humidity } = forecast;
 
     var col = document.createElement('div');
     var card = document.createElement('div');
@@ -168,8 +168,8 @@ function renderForecastEl(forecast, timezone) {
     var cardTitle = document.createElement('h5');
     var weatherIcon = document.createElement('img');
     var tempEl = document.createElement('p');
-    var humidityEl = document.createElement('p');
     var windEl = document.createElement('p');
+    var humidityEl = document.createElement('p');
 
     col.append(card);
     card.append(cardBody);
@@ -181,8 +181,17 @@ function renderForecastEl(forecast, timezone) {
     cardBody.setAttribute('class', 'card-body p-2');
     cardTitle.setAttribute('class', 'card-title');
     tempEl.setAttribute('class', 'card-text');
-    humidityEl.setAttribute('class', 'card-text');
     windEl.setAttribute('class', 'card-text');
+    humidityEl.setAttribute('class', 'card-text');
+    
+    cardTitle.textContent = dayjs.unix(unixTs).tz(timezone).format('MM/DD/YYYY');
+    weatherIcon.setAttribute('src', iconUrl);
+    weatherIcon.setAttribute('alt', iconDescription);
+    tempEl.textContent = `Temperature: ${temp} °F`;
+    windEl.textContent = `Wind: ${wind} MPH`;
+    humidityEl.textContent = `Humidity: ${humidity} %`;
+
+    forecastEl.append(col);
 }
 
 function renderForecast(dailyForecast, timezone) {
