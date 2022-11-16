@@ -215,6 +215,11 @@ function renderForecast(dailyForecast, timezone) {
     }
 }
 
+function renderItems(city, data) {
+    renderCurrentWeather(city, data.current, data.timezone);
+    renderForecast(data.daily, data.timezone);
+}
+
 // Pass cityName to Geolocation on submit
 function handleSearch(error) {
     if (!inputEl.value) {
