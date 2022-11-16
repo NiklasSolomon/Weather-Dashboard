@@ -167,6 +167,12 @@ function renderForecast(dailyForecast, timezone) {
 
     forecastEl.innerHTML = '';
     forecastEl.append(headerCol);
+
+    for (var i = 0; i <dailyForecast.length; i++) {
+        if (dailyForecast[i].dt >= startDate && dailyForecast[i].dt < endDate) {
+            renderForecastEl(dailyForecast[i], timezone);
+        }
+    }
 }
 
 // Pass cityName to Geolocation on submit
