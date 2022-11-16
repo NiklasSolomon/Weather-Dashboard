@@ -161,6 +161,28 @@ function renderForecastEl(forecast, timezone) {
     var temp = forecast.temp.day;
     var { humidity } = forecast;
     var wind = forecast.wind_speed;
+
+    var col = document.createElement('div');
+    var card = document.createElement('div');
+    var cardBody = document.createElement('div');
+    var cardTitle = document.createElement('h5');
+    var weatherIcon = document.createElement('img');
+    var tempEl = document.createElement('p');
+    var humidityEl = document.createElement('p');
+    var windEl = document.createElement('p');
+
+    col.append(card);
+    card.append(cardBody);
+    cardBody.append(cardTitle, weatherIcon, tempEl, windEl, humidityEl);
+
+    col.setAttribute('class', 'col-md');
+    col.classList.add('five-day-card');
+    card.setAttribute('class', 'card bg-primary h-100 text-white');
+    cardBody.setAttribute('class', 'card-body p-2');
+    cardTitle.setAttribute('class', 'card-title');
+    tempEl.setAttribute('class', 'card-text');
+    humidityEl.setAttribute('class', 'card-text');
+    windEl.setAttribute('class', 'card-text');
 }
 
 function renderForecast(dailyForecast, timezone) {
